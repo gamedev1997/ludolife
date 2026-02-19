@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ludo Online</title>
+    <link rel="icon" type="image/png" href="media/graphics/misc/icon.png" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport"
+        content="initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no, minimal-ui" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" type="text/css" href="game.css">
+    <script type="text/javascript" src="game.js"></script>
+
+    <script type="text/javascript" src="game-portal-sdk.js"></script>
+    <!-- CUSTOM FUNCTIONS -->
+    <script type="text/javascript">
+        // Please restrict pausing game in online mode
+        var gamePause = function () {
+            try {
+                ig.system.stopRunLoop.call(ig.system);
+                ig.game.tweens.onSystemPause();
+                // console.log('Game paused');
+            } catch (error) {}
+        }
+        var gameResume = function () {
+            try {
+                ig.system.startRunLoop.call(ig.system);
+                ig.game.tweens.onSystemResume();
+                // console.log('Game resumed');
+            } catch (error) {}
+        }
+        var muteSound = function () {
+            if (ig.soundHandler) ig.soundHandler.forceMuteAll();
+        }
+        var unmuteSound = function () {
+            if (ig.soundHandler) ig.soundHandler.forceUnMuteAll();
+        }
+    </script>
+</head>
+<body onload="setTimeout(function(){window.scrollTo(0,1)},1);">
+    <div id="gloader">
+        <div id="game"><canvas id="canvas"></canvas></div>
+        <div id="orientate"><img src="media/graphics/misc/orientate.png" /></div>
+    </div>
+    <div class="preloadFont" style="font-family:title">.</div>
+    <div class="preloadFont" style="font-family:text">.</div>
+    <div id="overlay"></div>
+</body>
+</html>
